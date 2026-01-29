@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html lang='fr'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>PANDAS - Cheatsheet</title>
+    <link rel='stylesheet' href='../assets/css/style.css'>
+</head>
+<body>
+    <nav class='top-nav'>
+        <a href='../index.html'>&larr; RETOUR HUB</a>
+    </nav>
+
+    <div class='cheat-sheet-container'>
+        <header class='topic-header'>
+            <h1>PANDAS</h1>
+            <p class='topic-meta'>Module de référence technique.</p>
+        </header>
+
+        <main>
+                    <section class='command-group'>
+            <h2>1. Création & I/O</h2>
+            <div class='command-block'>
+                <div class='cmd-syntax'>
+                    <pre><code>import pandas as pd
+df = pd.read_csv('data.csv', sep=',')
+df = pd.DataFrame({'A': [1, 2], 'B': [3, 4]})</code></pre>
+                </div>
+                <div class='cmd-desc'>
+                    <p>Importation standard et initialisation de DataFrames depuis CSV ou Dictionnaire.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class='command-group'>
+            <h2>2. Inspection & Sélection</h2>
+            <div class='command-block'>
+                <div class='cmd-syntax'>
+                    <pre><code>df.head(5)          # 5 premières lignes
+df.info()           # Types et mémoire
+df.describe()       # Stats descriptives
+df.loc[:, 'A']      # Sélection par label (Col A)
+df.iloc[0:5, :]     # Sélection par index (Lignes 0-4)</code></pre>
+                </div>
+                <div class='cmd-desc'>
+                    <p>Méthodes d'exploration rapide et slicing (loc vs iloc).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class='command-group'>
+            <h2>3. Manipulation de Données</h2>
+            <div class='command-block'>
+                <div class='cmd-syntax'>
+                    <pre><code>df.dropna()                     # Supprimer les NaNs
+df.fillna(value=0)              # Remplacer les NaNs
+df.groupby('col').mean()        # Agrégation
+df.merge(df2, on='key')         # Jointure SQL-like</code></pre>
+                </div>
+                <div class='cmd-desc'>
+                    <p>Nettoyage des données manquantes et opérations relationnelles.</p>
+                </div>
+            </div>
+        </section>
+        </main>
+
+        <footer>
+            <p>UTT System // PANDAS</p>
+        </footer>
+    </div>
+</body>
+</html>

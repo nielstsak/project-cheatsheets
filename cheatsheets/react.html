@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang='fr'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>REACT - Cheatsheet</title>
+    <link rel='stylesheet' href='../assets/css/style.css'>
+</head>
+<body>
+    <nav class='top-nav'>
+        <a href='../index.html'>&larr; RETOUR HUB</a>
+    </nav>
+
+    <div class='cheat-sheet-container'>
+        <header class='topic-header'>
+            <h1>REACT</h1>
+            <p class='topic-meta'>Module de référence technique.</p>
+        </header>
+
+        <main>
+            <section class='command-group'>
+                <h2>1. Composants & Props</h2>
+                <div class='command-block'>
+                    <div class='cmd-syntax'>
+                        <pre><code>function Welcome(props) {
+  return &lt;h1&gt;Bonjour, {props.name}&lt;/h1&gt;;
+}</code></pre>
+                    </div>
+                    <div class='cmd-desc'>
+                        <p>Structure d'un composant fonctionnel simple avec interpolation JSX.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class='command-group'>
+                <h2>2. Hooks (État & Effets)</h2>
+                <div class='command-block'>
+                    <div class='cmd-syntax'>
+                        <pre><code>import { useState, useEffect } from 'react';
+
+const [count, setCount] = useState(0);
+
+useEffect(() => {
+  document.title = `Compteur: ${count}`;
+}, [count]); // Dépendance</code></pre>
+                    </div>
+                    <div class='cmd-desc'>
+                        <p>Gestion de l'état local avec <code>useState</code> et des effets de bord avec <code>useEffect</code>.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>UTT System // REACT</p>
+        </footer>
+    </div>
+</body>
+</html>

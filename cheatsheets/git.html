@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang='fr'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>GIT - Cheatsheet</title>
+    <link rel='stylesheet' href='../assets/css/style.css'>
+</head>
+<body>
+    <nav class='top-nav'>
+        <a href='../index.html'>&larr; RETOUR HUB</a>
+    </nav>
+
+    <div class='cheat-sheet-container'>
+        <header class='topic-header'>
+            <h1>GIT</h1>
+            <p class='topic-meta'>Module de référence technique.</p>
+        </header>
+
+        <main>
+                    <section class='command-group'>
+            <h2>1. Flux Standard</h2>
+            <div class='command-block'>
+                <div class='cmd-syntax'>
+                    <pre><code>git init
+git add .
+git commit -m 'feat: initial commit'
+git push origin main</code></pre>
+                </div>
+                <div class='cmd-desc'>
+                    <p>Cycle de vie basique d'un commit et synchronisation distante.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class='command-group'>
+            <h2>2. Branching & Merging</h2>
+            <div class='command-block'>
+                <div class='cmd-syntax'>
+                    <pre><code>git checkout -b feature/login   # Créer et changer
+git merge develop               # Fusionner
+git rebase main                 # Réécrire l'historique</code></pre>
+                </div>
+                <div class='cmd-desc'>
+                    <p>Stratégies de divergence et de réconciliation.</p>
+                </div>
+            </div>
+        </section>
+        </main>
+
+        <footer>
+            <p>UTT System // GIT</p>
+        </footer>
+    </div>
+</body>
+</html>
