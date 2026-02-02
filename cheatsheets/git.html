@@ -13,128 +13,144 @@
         <header class="topic-header">
             <div>
                 <h1>GIT REFERENCE</h1>
-                <p class="meta">Protocole de versioning distribué / Architecture Atlassian Model</p>
+                <p class="meta">Protocole de versioning distribué / Source: Atlassian Cheat Sheet [cite: 1]</p>
             </div>
             <a href="../index.html" class="nav-back">&larr; Retour HUB</a>
         </header>
 
         <section class="command-group">
-            <h2>Initialisation & Config</h2>
+            <h2>GIT CONFIG & SETUP</h2>
             
-            <div class="command-row">
-                <code class="cmd-line">git init <span class="arg">&lt;directory&gt;</span></code>
-                <p class="cmd-desc">Crée un dépôt vide. Si aucun argument n'est fourni, initialise le dossier courant[cite: 3].</p>
-            </div>
-
             <div class="command-row">
                 <code class="cmd-line">git config <span class="flag">--global</span> user.name <span class="arg">&lt;name&gt;</span></code>
                 <p class="cmd-desc">Définit le nom de l'auteur utilisé pour tous les commits de l'utilisateur actuel[cite: 3, 10].</p>
             </div>
-            
+
+            <div class="command-row">
+                <code class="cmd-line">git config <span class="flag">--global</span> user.email <span class="arg">&lt;email&gt;</span></code>
+                <p class="cmd-desc">Définit l'email de l'auteur pour tous les commits.</p>
+            </div>
+
             <div class="command-row">
                 <code class="cmd-line">git config <span class="flag">--global</span> alias.<span class="arg">&lt;alias&gt;</span> <span class="arg">&lt;cmd&gt;</span></code>
-                <p class="cmd-desc">Crée un raccourci. Exemple : <code>alias.glog "log --graph"</code>[cite: 10].</p>
+                <p class="cmd-desc">Crée un raccourci. Ex: <code>alias.glog "log --graph --oneline"</code>.</p>
             </div>
 
             <div class="command-row">
-                <code class="cmd-line">git clone <span class="arg">&lt;repo&gt;</span></code>
-                <p class="cmd-desc">Clone le dépôt distant sur la machine locale via HTTP ou SSH[cite: 3].</p>
+                <code class="cmd-line">git config <span class="flag">--system</span> core.editor <span class="arg">&lt;editor&gt;</span></code>
+                <p class="cmd-desc">Définit l'éditeur de texte pour les commandes (ex: vi, nano) pour tous les utilisateurs.</p>
+            </div>
+
+            <div class="command-row">
+                <code class="cmd-line">git config <span class="flag">--global --edit</span></code>
+                <p class="cmd-desc">Ouvre le fichier de configuration global dans un éditeur de texte pour modification manuelle.</p>
             </div>
         </section>
 
         <section class="command-group">
-            <h2>Gestion des Changements</h2>
+            <h2>LOGS & HISTORIQUE</h2>
             
             <div class="command-row">
-                <code class="cmd-line">git status</code>
-                <p class="cmd-desc">Affiche les fichiers indexés (staged), modifiés (unstaged) et non-suivis (untracked)[cite: 3].</p>
+                <code class="cmd-line">git log <span class="flag">-&lt;limit&gt;</span></code>
+                <p class="cmd-desc">Limite le nombre de commits affichés. Ex: <code>git log -5</code>.</p>
             </div>
 
             <div class="command-row">
-                <code class="cmd-line">git add <span class="arg">&lt;directory&gt;</span></code>
-                <p class="cmd-desc">Ajoute les modifications du répertoire à l'index pour le prochain commit[cite: 3].</p>
+                <code class="cmd-line">git log <span class="flag">--oneline</span></code>
+                <p class="cmd-desc">Condense chaque commit sur une seule ligne (ID + Message).</p>
             </div>
 
             <div class="command-row">
-                <code class="cmd-line">git commit <span class="flag">-m</span> "<span class="arg">&lt;message&gt;</span>"</code>
-                <p class="cmd-desc">Valide le snapshot indexé avec un message descriptif sans ouvrir l'éditeur[cite: 3].</p>
+                <code class="cmd-line">git log <span class="flag">--stat</span></code>
+                <p class="cmd-desc">Affiche quels fichiers ont été modifiés et le nombre relatif de lignes ajoutées/supprimées.</p>
             </div>
 
             <div class="command-row">
-                <code class="cmd-line">git diff <span class="flag">--staged</span></code>
-                <p class="cmd-desc">Affiche les différences entre les fichiers indexés et le dernier commit[cite: 13].</p>
+                <code class="cmd-line">git log <span class="flag">-p</span></code>
+                <p class="cmd-desc">Affiche le diff complet (patch) pour chaque commit.</p>
+            </div>
+
+            <div class="command-row">
+                <code class="cmd-line">git log <span class="flag">--author</span>="<span class="arg">&lt;pattern&gt;</span>"</code>
+                <p class="cmd-desc">Recherche les commits par un auteur spécifique.</p>
+            </div>
+
+            <div class="command-row">
+                <code class="cmd-line">git log <span class="flag">--grep</span>="<span class="arg">&lt;pattern&gt;</span>"</code>
+                <p class="cmd-desc">Recherche les commits dont le message correspond au motif.</p>
+            </div>
+
+            <div class="command-row">
+                <code class="cmd-line">git log <span class="arg">&lt;since&gt;</span>..<span class="arg">&lt;until&gt;</span></code>
+                <p class="cmd-desc">Affiche les commits entre deux références (ID, branch, HEAD).</p>
+            </div>
+
+            <div class="command-row">
+                <code class="cmd-line">git log <span class="flag">--graph --decorate</span></code>
+                <p class="cmd-desc">Dessine un graphe textuel des branches et ajoute les noms des branches/tags.</p>
             </div>
         </section>
 
         <section class="command-group">
-            <h2>Historique & Logs</h2>
+            <h2>DIFF & RESET (UNDOING)</h2>
             
             <div class="command-row">
-                <code class="cmd-line">git log <span class="flag">--graph --oneline --decorate</span></code>
-                <p class="cmd-desc">Affiche l'arbre des commits sous forme de graphe ASCII compact avec les refs[cite: 10].</p>
+                <code class="cmd-line">git diff HEAD</code>
+                <p class="cmd-desc">Affiche la différence entre le répertoire de travail et le dernier commit[cite: 11, 13].</p>
             </div>
 
             <div class="command-row">
-                <code class="cmd-line">git log <span class="flag">-p</span> <span class="arg">&lt;file&gt;</span></code>
-                <p class="cmd-desc">Affiche l'historique complet des diffs pour un fichier spécifique[cite: 10].</p>
-            </div>
-            
-            <div class="command-row">
-                <code class="cmd-line">git reflog</code>
-                <p class="cmd-desc">Journal de sécurité affichant tous les mouvements de HEAD (utile pour récupération après erreur)[cite: 3].</p>
-            </div>
-        </section>
-
-        <section class="command-group">
-            <h2>Branches & Synchro Distante</h2>
-            
-            <div class="command-row">
-                <code class="cmd-line">git checkout <span class="flag">-b</span> <span class="arg">&lt;branch&gt;</span></code>
-                <p class="cmd-desc">Crée une nouvelle branche et bascule immédiatement dessus[cite: 3].</p>
+                <code class="cmd-line">git diff <span class="flag">--cached</span></code>
+                <p class="cmd-desc">Affiche la différence entre l'index (staged) et le dernier commit[cite: 12].</p>
             </div>
 
             <div class="command-row">
-                <code class="cmd-line">git merge <span class="arg">&lt;branch&gt;</span></code>
-                <p class="cmd-desc">Fusionne la branche spécifiée dans la branche courante[cite: 3].</p>
+                <code class="cmd-line">git reset <span class="arg">&lt;file&gt;</span></code>
+                <p class="cmd-desc">Retire le fichier de l'index (Unstage) mais garde le répertoire de travail inchangé[cite: 16].</p>
             </div>
 
             <div class="command-row">
-                <code class="cmd-line">git fetch <span class="arg">&lt;remote&gt;</span></code>
-                <p class="cmd-desc">Récupère les objets distants sans modifier le répertoire de travail local[cite: 3].</p>
-            </div>
-            
-            <div class="command-row">
-                <code class="cmd-line">git push <span class="arg">&lt;remote&gt;</span> <span class="flag">--tags</span></code>
-                <p class="cmd-desc">Envoie tous les tags locaux vers le dépôt distant (non inclus par défaut)[cite: 38].</p>
-            </div>
-        </section>
-
-        <section class="command-group">
-            <h2>Réécriture & Correction</h2>
-            
-            <div class="command-row">
-                <code class="cmd-line">git commit <span class="flag">--amend</span></code>
-                <p class="cmd-desc">Combine les changements indexés avec le commit précédent (ou édite le message)[cite: 3].</p>
-            </div>
-
-            <div class="command-row">
-                <code class="cmd-line">git rebase <span class="flag">-i</span> <span class="arg">&lt;base&gt;</span></code>
-                <p class="cmd-desc">Rebase interactif pour nettoyer, fusionner ou réordonner les commits avant push[cite: 25, 26].</p>
+                <code class="cmd-line">git reset <span class="arg">&lt;commit&gt;</span></code>
+                <p class="cmd-desc">Recule le pointeur de branche vers &lt;commit&gt;, reset l'index, mais garde le répertoire de travail[cite: 19, 20].</p>
             </div>
 
             <div class="command-row">
                 <code class="cmd-line danger">git reset <span class="flag">--hard</span> <span class="arg">&lt;commit&gt;</span></code>
-                <p class="cmd-desc">Réinitialise l'index ET le répertoire de travail pour correspondre au commit cible. Destructif[cite: 17, 18].</p>
+                <p class="cmd-desc">Réinitialise l'index ET le répertoire de travail. Supprime tous les changements non committés[cite: 17, 18, 21].</p>
             </div>
+        </section>
+
+        <section class="command-group">
+            <h2>REMOTE, PULL & PUSH</h2>
             
             <div class="command-row">
-                <code class="cmd-line">git revert <span class="arg">&lt;commit&gt;</span></code>
-                <p class="cmd-desc">Crée un commit inverse pour annuler les effets d'un commit précédent (Safe)[cite: 3].</p>
+                <code class="cmd-line">git rebase <span class="flag">-i</span> <span class="arg">&lt;base&gt;</span></code>
+                <p class="cmd-desc">Rebase interactif. Lance l'éditeur pour gérer le transfert de chaque commit (squash, fixup)[cite: 25, 26].</p>
+            </div>
+
+            <div class="command-row">
+                <code class="cmd-line">git pull <span class="flag">--rebase</span> <span class="arg">&lt;remote&gt;</span></code>
+                <p class="cmd-desc">Récupère la branche distante et rebase la branche locale dessus (au lieu de merger)[cite: 28, 29].</p>
+            </div>
+
+            <div class="command-row">
+                <code class="cmd-line danger">git push <span class="arg">&lt;remote&gt;</span> <span class="flag">--force</span></code>
+                <p class="cmd-desc">Force le push même si cela entraîne un "non-fast-forward merge". Dangereux[cite: 33, 34].</p>
+            </div>
+
+            <div class="command-row">
+                <code class="cmd-line">git push <span class="arg">&lt;remote&gt;</span> <span class="flag">--all</span></code>
+                <p class="cmd-desc">Envoie toutes les branches locales vers le dépôt distant spécifié[cite: 36, 37].</p>
+            </div>
+
+            <div class="command-row">
+                <code class="cmd-line">git push <span class="arg">&lt;remote&gt;</span> <span class="flag">--tags</span></code>
+                <p class="cmd-desc">Envoie tous les tags locaux vers le dépôt distant (ne se fait pas par défaut)[cite: 38, 40].</p>
             </div>
         </section>
         
         <footer>
-            <p>UTT System // GIT Reference // Source: Atlassian PDF</p>
+            <p>UTT System // GIT Reference // Data Source: Atlassian Git Cheat Sheet [cite: 1, 6]</p>
         </footer>
 
     </div>
